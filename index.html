@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shopcart</title>
+<meta name="description" content="Shopcart helps you browse 20+ curated products with category filters, realistic prices, favorites, and quick search suggestions." />
+<meta name="keywords" content="shopcart, online shopping, product filters, category filter, price slider, favorites, cart" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Shopcart" />
+<meta property="og:description" content="Browse products, filter by category and price, save favorites, and search by product name or brand." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Shopcart" />
+<meta name="twitter:description" content="Browse products, filter by category and price, save favorites, and search by product name or brand." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style/main.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Shopcart",
+  "description": "A product shopping catalog with favorites, filters, and quick cart access.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Shopcart Product Catalog"
+  }
+}
+</script>
+</head>
+<body>
+
+<header class="header">
+  <div class="mainnav">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></span>
+        <span class="logo-text">Shopcart</span>
+      </a>
+
+      <nav class="nav-links">
+        <div class="nav-dropdown" id="categoriesDropdown">
+          <button class="nav-dropdown-toggle" id="categoriesToggle" type="button" aria-expanded="false">
+            Categories
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" id="categoriesMenu"></div>
+        </div>
+        <a href="#products" data-all-products-link="true">Products</a>
+        <a href="tab/my-orders.html">My Orders</a>
+      </nav>
+
+      <div class="search-wrap">
+        <input type="search" id="searchInput" placeholder="Search Product" aria-label="Search Product" autocomplete="off" />
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="search-suggestions" id="searchSuggestions" hidden></div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn icon-action-btn" id="toggleFavorites" type="button" aria-label="Show favorite products" aria-pressed="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="label">Favorite</span>
+          <span class="icon-badge favorite-badge" id="favoriteBadge" style="display:none">0</span>
+        </button>
+        <button class="icon-btn" id="openCart" type="button" aria-label="Open cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="label">Cart</span>
+          <span class="icon-badge cart-badge" id="cartBadge" style="display:none">0</span>
+        </button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+	      <div class="container">
+		        <a href="#products" data-all-products-link="true">All Products</a>
+	        <a href="tab/my-orders.html">My Orders</a>
+	        <div class="mobile-menu-group">
+	          <p>Categories</p>
+	          <div id="mobileCategoryLinks"></div>
+	        </div>
+	      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="catalog-section" id="products">
+    <div class="container">
+      <div class="catalog-title-row">
+        <div>
+          <h1><span id="resultCount">0</span> <span id="resultWord">results</span> for <span id="activeCategoryLabel">all products</span></h1>
+        </div>
+      </div>
+
+      <div class="catalog-shell">
+        <aside class="catalog-sidebar">
+          <div class="filter-card">
+	            <div class="filter-group">
+	              <div class="filter-group-head">
+                <label for="minPriceRange">Price</label>
+                <button class="text-btn" id="resetPriceRange" type="button">Default</button>
+              </div>
+              <div class="price-filter">
+                <div class="price-slider-wrap">
+                  <div class="price-bars" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                  <div class="price-track"></div>
+                  <div class="price-progress" id="priceProgress"></div>
+                  <input type="range" id="minPriceRange" class="price-range-input price-range-min" aria-label="Minimum price range" />
+                  <input type="range" id="maxPriceRange" class="price-range-input price-range-max" aria-label="Maximum price range" />
+                  
+                  <div class="price-tooltip" id="minPriceTooltip"></div>
+                  <div class="price-tooltip" id="maxPriceTooltip"></div>
+                </div>
+	                <div class="price-scale" aria-hidden="true">
+	                  <span id="minPriceHint"></span>
+	                  <span id="maxPriceHint"></span>
+	                </div>
+	                <div class="price-input-row">
+	                  <label class="price-input-box">
+	                    <span class="sr-only">Selected start price</span>
+                        <input type="text" id="minPriceInput" inputmode="numeric" aria-label="Selected start price" />
+	                  </label>
+	                  <span class="price-input-separator" aria-hidden="true">to</span>
+	                  <label class="price-input-box">
+	                    <span class="sr-only">Selected end price</span>
+                        <input type="text" id="maxPriceInput" inputmode="numeric" aria-label="Selected end price" />
+	                  </label>
+	                </div>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <div class="catalog-main">
+          <div class="catalog-toolbar">
+            <div class="catalog-view">
+              <button class="view-btn active" type="button" data-view="grid" aria-label="Standard grid view">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              </button>
+              <button class="view-btn" type="button" data-view="compact" aria-label="Compact grid view">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="5" height="5" rx="1"/><rect x="10" y="5" width="5" height="5" rx="1"/><rect x="16" y="5" width="4" height="5" rx="1"/><rect x="4" y="13" width="5" height="5" rx="1"/><rect x="10" y="13" width="5" height="5" rx="1"/><rect x="16" y="13" width="4" height="5" rx="1"/></svg>
+              </button>
+            </div>
+
+            <div class="toolbar-select">
+              <label for="sortSelect">Sort by</label>
+              <div class="select-wrap select-wrap-small">
+	                <select id="sortSelect" aria-label="Sort products">
+	                  <option value="newest">Newest (Default)</option>
+	                  <option value="price-low">Price: Low to High</option>
+	                  <option value="price-high">Price: High to Low</option>
+	                  <option value="name">Name: A to Z</option>
+	                </select>
+	              </div>
+	            </div>
+          </div>
+
+          <div class="products-grid" id="productGrid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-simple">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></span>
+      <span class="logo-text" style="color: var(--primary-fg)">Shopcart</span>
+    </a>
+    <p class="footer-tag">Browse, filter, and checkout with a smoother shopping experience built for fast product discovery.</p>
+    <div class="footer-bottom">
+      <p class="copy">&copy; 2026 Shopcart. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="cartRoot"></div>
+<div class="toast" id="toast"></div>
+<button class="scroll-top" id="scrollTopBtn" type="button" aria-label="Scroll to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>

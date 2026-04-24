@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Orders - Shopcart</title>
+<meta name="description" content="View your recent Shopcart orders in one dedicated page." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style/main.css" />
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="mainnav">
+    <div class="container">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></span>
+        <span class="logo-text">Shopcart</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html#products">Products</a>
+        <a href="my-orders.html">My Orders</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="openCart" type="button" aria-label="Open cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="label">Cart</span>
+          <span class="icon-badge cart-badge" id="cartBadge" style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="checkout-wrap container">
+  <a href="../index.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Continue shopping
+  </a>
+
+  <section class="order-history-section">
+    <div class="order-history-head">
+      <h1 class="page-title">My Orders</h1>
+      <p>Your ordered history with live track status and invoice download.</p>
+    </div>
+    <div class="order-history-list" id="orderHistoryList"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-simple">
+    <a href="../index.html" class="logo">
+      <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></span>
+      <span class="logo-text" style="color: var(--primary-fg)">Shopcart</span>
+    </a>
+    <p class="footer-tag">Browse, filter, and checkout with a smoother shopping experience built for fast product discovery.</p>
+    <div class="footer-bottom">
+      <p class="copy">&copy; 2026 Shopcart. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="cartRoot"></div>
+<div class="toast" id="toast"></div>
+<div class="invoice-capture" id="invoiceCapture" aria-hidden="true"></div>
+
+<script src="../js/script.js"></script>
+<script src="../js/my-orders.js"></script>
+</body>
+</html>
