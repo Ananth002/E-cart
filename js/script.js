@@ -550,7 +550,7 @@ function renderDrawer() {
       <div class="summary-row"><span class="muted">Subtotal</span><span>${formatPrice(cart.subtotal())}</span></div>
       <div class="summary-row"><span class="muted">Shipping</span><span class="free">Free</span></div>
       <div class="summary-total"><span>Total</span><span>${formatPrice(cart.subtotal())}</span></div>
-      <a href="../tab/checkout.html" class="btn btn-primary btn-block">
+      <a href="../tab/check-out.html" class="btn btn-primary btn-block">
         Checkout
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
